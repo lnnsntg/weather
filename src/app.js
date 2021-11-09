@@ -31,7 +31,7 @@ app.get("/weather", (req, res) => {
   }
   geocode(req.query.address, (error, data) => {
     if (error) {
-      return res.send( {error} );
+      return res.send({ error });
     } else {
       const localidad = data.place_name;
       const latitud = data.center[1];
@@ -52,7 +52,7 @@ app.get("/weather", (req, res) => {
           res.send({
             "Search term": req.query.address,
             "Coordinate found according to search term": `${ latitud },${ longitud }`,
-            
+
             "Return location according to the coordinates sent to weatherstack.com": `${ name }, ${ region }, ${ country }`,
             "Weather description": `${ weather_descriptions }`,
             "Actual Temperature": `${ temperature }º grados centígrados`,
@@ -128,6 +128,6 @@ app.get("*", (req, res) => {
 });
 
 //------------------------------------------------------------------------
-app.listen(process.env.PORT || 3000, () => {
+app.listen(process.env.PORT || PORT, () => {
   console.log(`Server running! at port ${ process.env.PORT }`);
 });

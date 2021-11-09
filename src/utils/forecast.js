@@ -2,10 +2,10 @@ const request = require("request");
 const dotenv = require('dotenv');
 dotenv.config();
 const access_key = process.env.access_key;
-const urlBase = "http://api.weatherstack.com/current?access_key=";
+const urlBase = `http://api.weatherstack.com/current?access_key=${ access_key }&query=`;
 
 function forecast(address,callback) {
-    const url = `${ urlBase }${ access_key }&query=${ encodeURIComponent(address) }`;
+    const url = `${ urlBase }${ encodeURIComponent(address) }`;
 
     request({ url: url, json: true }, (error, response) => {
         if (error) {
